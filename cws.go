@@ -15,8 +15,8 @@ type CWS interface {
 type ModeType int
 
 const (
-	// ModeNormal the mode of the normal
-	ModeNormal ModeType = iota
+	// ModeDefault the mode of the normal
+	ModeDefault ModeType = iota
 	// ModeSearch the mode of the search
 	ModeSearch
 )

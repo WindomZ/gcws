@@ -1,4 +1,4 @@
-package sego
+package jieba
 
 import (
 	"testing"
@@ -10,14 +10,14 @@ import (
 var demo gcws.CWS
 
 func init() {
-	demo, _ = gcws.NewCWS("sego")
+	demo, _ = gcws.NewCWS("jieba")
 }
 
-func TestSegmenter_SetMode(t *testing.T) {
+func TestJieba_SetMode(t *testing.T) {
 	demo.SetMode(gcws.ModeDefault)
 }
 
-func TestSegmenter_Tokenize(t *testing.T) {
+func TestJieba_Tokenize(t *testing.T) {
 	assert.Equal(t, []string{"喜欢", "就", "坚持", "，", "爱", "就", "别", "放弃"},
 		demo.Tokenize("喜欢就坚持，爱就别放弃"))
 

@@ -41,7 +41,7 @@ func (s Segmenter) Tokenize(str string) []string {
 
 // ModeTokenize returns the string array of split with cws mode type.
 func (s Segmenter) ModeTokenize(typ gcws.ModeType, str string) []string {
-	if typ == gcws.ModeNormal {
+	if typ == gcws.ModeDefault {
 		return sego.SegmentsToSlice(s.Segment([]byte(str)), false)
 	}
 	return sego.SegmentsToSlice(s.Segment([]byte(str)), true)
