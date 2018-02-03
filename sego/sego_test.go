@@ -13,6 +13,13 @@ func init() {
 	demo, _ = gcws.NewCWS("sego")
 }
 
+func TestRegister(t *testing.T) {
+	defer func() {
+		assert.NotEmpty(t, recover())
+	}()
+	gcws.Register("sego", NewSegmenter)
+}
+
 func TestSegmenter_SetMode(t *testing.T) {
 	demo.SetMode(gcws.ModeSearch)
 	demo.SetMode(gcws.ModeDefault)

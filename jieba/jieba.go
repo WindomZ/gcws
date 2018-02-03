@@ -5,7 +5,7 @@ import (
 	"github.com/yanyiwu/gojieba"
 )
 
-// Jieba
+// Jieba is gojieba.Jieba adapter.
 type Jieba struct {
 	Mode gcws.ModeType
 	gojieba.Jieba
