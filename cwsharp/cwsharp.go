@@ -11,7 +11,7 @@ import (
 
 // CWSharp is cwsharp.CWSharp adapter.
 type CWSharp struct {
-	Mode gcws.ModeType
+	Config gcws.Config
 	cwsharp.Tokenizer
 }
 
@@ -30,25 +30,26 @@ func NewCWSharp(paths ...string) gcws.CWS {
 		panic(err)
 	}
 	return &CWSharp{
-		Mode:      gcws.ModeDefault,
+		Config:    gcws.DefaultConfig,
 		Tokenizer: token,
 	}
 }
 
-// SetMode set cws mode type.
-func (c *CWSharp) SetMode(typ gcws.ModeType) {
-	c.Mode = typ
+// SetConfig set cws configuration.
+func (c *CWSharp) SetConfig(conf gcws.Config) {
+	c.Config = conf
 }
 
 // Tokenize returns the string array of split.
 func (c CWSharp) Tokenize(str string) []string {
-	return c.ModeTokenize(c.Mode, str)
+	return c.ConfigTokenize(c.Config, str)
 }
 
-// ModeTokenize returns the string array of split with cws mode type.
-func (c CWSharp) ModeTokenize(typ gcws.ModeType, str string) (ret []string) {
+// ConfigTokenize returns the string array of split with cws configuration.
+func (c CWSharp) ConfigTokenize(conf gcws.Config, str string) (ret []string) {
 	var iter cwsharp.Iterator
-	switch typ {
+
+	switch conf.Mode {
 	case gcws.ModeFast:
 		iter = cwsharp.BigramTokenize(strings.NewReader(str))
 	case gcws.ModeEnglish:
@@ -56,11 +57,19 @@ func (c CWSharp) ModeTokenize(typ gcws.ModeType, str string) (ret []string) {
 	default:
 		iter = c.Tokenizer.Tokenize(strings.NewReader(str))
 	}
-	for tok := iter.Next(); tok != nil; tok = iter.Next() {
-		if tok.Type != cwsharp.PUNCT {
+
+	if conf.SkipPunct {
+		for tok := iter.Next(); tok != nil; tok = iter.Next() {
+			if tok.Type != cwsharp.PUNCT {
+				ret = append(ret, tok.Text)
+			}
+		}
+	} else {
+		for tok := iter.Next(); tok != nil; tok = iter.Next() {
 			ret = append(ret, tok.Text)
 		}
 	}
+
 	return
 }
 
