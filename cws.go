@@ -15,10 +15,14 @@ type CWS interface {
 type ModeType int
 
 const (
-	// ModeDefault the mode of the normal
+	// ModeDefault the mode of the normal.
 	ModeDefault ModeType = iota
-	// ModeSearch the mode of the search
+	// ModeSearch the mode of the search.
 	ModeSearch
+	// ModeFast the mode of the fast word segmentation.
+	ModeFast
+	// ModeEnglish the mode of better english.
+	ModeEnglish
 )
 
 // Instance is a function create a new CWS Instance
