@@ -5,28 +5,31 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/WindomZ/gcws)](https://goreportcard.com/report/github.com/WindomZ/gcws)
 [![GoDoc](https://godoc.org/github.com/WindomZ/gcws?status.svg)](https://godoc.org/github.com/WindomZ/gcws)
 
-> gcws是golang版本的CWS(Chinese Word Segmentation) - 一个开源中文分词适配管理器
+> gcws is CWS(Chinese Word Segmentation) for golang - some cws adapters manager.
 
-[English](./README.md)
+The repo is inspired by `database/sql`.
 
-## 安装
+[中文说明](README.md)
+
+## Install
 ```bash
 go get github.com/WindomZ/gcws/...
 ```
 
-## 支持
-- [x] jieba
-- [x] sego
+## Supported
+- [x] [sego](https://github.com/huichen/sego)
+- [x] [jieba](https://github.com/yanyiwu/gojieba)
+- [x] [cwsharp](https://github.com/zhengchun/cwsharp-go)
 
-## 用法
-导入
+## Usage
+Import it
 ```
 import (
     "github.com/WindomZ/gcws"
 )
 ```
 
-初始化(以`jieba`为例)
+Init it (example with `jieba`)
 ```
 import (
     _ "github.com/WindomZ/gcws/jieba"
@@ -35,7 +38,7 @@ import (
 cws, err := gcws.NewCWS("jieba")
 ```
 
-简单使用
+Use it
 ```
-cws.Tokenize("喜欢就坚持，爱就别放弃")
+cws.Tokenize("For man is man and master of his fate.") // return []string{...}
 ```
