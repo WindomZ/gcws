@@ -5,6 +5,7 @@ import (
 
 	"github.com/WindomZ/gcws"
 	"github.com/WindomZ/testify/assert"
+	"github.com/yanyiwu/gojieba"
 )
 
 var demo gcws.CWS
@@ -18,6 +19,13 @@ func TestRegister(t *testing.T) {
 		assert.NotEmpty(t, recover())
 	}()
 	gcws.Register("jieba", NewJieba)
+}
+
+func TestJieba_Parent(t *testing.T) {
+	assert.NotEmpty(t, demo.Parent())
+
+	_, ok := demo.Parent().(*gojieba.Jieba)
+	assert.True(t, ok)
 }
 
 func TestJieba_SetConfig(t *testing.T) {

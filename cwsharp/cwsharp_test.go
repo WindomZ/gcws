@@ -5,6 +5,7 @@ import (
 
 	"github.com/WindomZ/gcws"
 	"github.com/WindomZ/testify/assert"
+	"github.com/zhengchun/cwsharp-go"
 )
 
 var demo gcws.CWS
@@ -18,6 +19,13 @@ func TestRegister(t *testing.T) {
 		assert.NotEmpty(t, recover())
 	}()
 	gcws.Register("cwsharp", NewCWSharp)
+}
+
+func TestCWSharp_Parent(t *testing.T) {
+	assert.NotEmpty(t, demo.Parent())
+
+	_, ok := demo.Parent().(cwsharp.Tokenizer)
+	assert.True(t, ok)
 }
 
 func TestCWSharp_SetConfig(t *testing.T) {

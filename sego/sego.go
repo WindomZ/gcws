@@ -31,6 +31,11 @@ func NewSegmenter(paths ...string) gcws.CWS {
 	return segmenter
 }
 
+// Parent is the interface of adapter parent structure.
+func (s Segmenter) Parent() interface{} {
+	return &s.Segmenter
+}
+
 // SetConfig set cws configuration.
 func (s *Segmenter) SetConfig(conf gcws.Config) {
 	s.Config = conf

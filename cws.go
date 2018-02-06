@@ -5,9 +5,13 @@ import "fmt"
 // CWS short for Chinese Word Segmentation,
 // interface contains all behaviors for cws adapter.
 type CWS interface {
+	// Parent is the interface of adapter parent structure.
+	Parent() interface{}
 	// SetConfig set cws configuration.
 	SetConfig(Config)
+	// Tokenize returns the string array of split.
 	Tokenize(string) []string
+	// ConfigTokenize returns the string array of split with cws configuration.
 	ConfigTokenize(Config, string) []string
 }
 

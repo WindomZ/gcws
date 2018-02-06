@@ -35,6 +35,11 @@ func NewCWSharp(paths ...string) gcws.CWS {
 	}
 }
 
+// Parent is the interface of adapter parent structure.
+func (c CWSharp) Parent() interface{} {
+	return c.Tokenizer
+}
+
 // SetConfig set cws configuration.
 func (c *CWSharp) SetConfig(conf gcws.Config) {
 	c.Config = conf

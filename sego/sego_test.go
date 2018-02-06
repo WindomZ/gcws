@@ -5,6 +5,7 @@ import (
 
 	"github.com/WindomZ/gcws"
 	"github.com/WindomZ/testify/assert"
+	"github.com/huichen/sego"
 )
 
 var demo gcws.CWS
@@ -18,6 +19,13 @@ func TestRegister(t *testing.T) {
 		assert.NotEmpty(t, recover())
 	}()
 	gcws.Register("sego", NewSegmenter)
+}
+
+func TestSegmenter_Parent(t *testing.T) {
+	assert.NotEmpty(t, demo.Parent())
+
+	_, ok := demo.Parent().(*sego.Segmenter)
+	assert.True(t, ok)
 }
 
 func TestSegmenter_SetConfig(t *testing.T) {

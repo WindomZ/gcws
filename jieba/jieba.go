@@ -19,6 +19,11 @@ func NewJieba(paths ...string) gcws.CWS {
 	}
 }
 
+// Parent is the interface of adapter parent structure.
+func (j Jieba) Parent() interface{} {
+	return &j.Jieba
+}
+
 // SetConfig set cws configuration.
 func (j *Jieba) SetConfig(conf gcws.Config) {
 	j.Config = conf
