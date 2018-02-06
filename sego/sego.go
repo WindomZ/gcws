@@ -10,7 +10,7 @@ import (
 
 // Segmenter is sego.Segmenter adapter.
 type Segmenter struct {
-	Mode gcws.ModeType
+	Config gcws.Config
 	sego.Segmenter
 }
 
@@ -24,27 +24,34 @@ func NewSegmenter(paths ...string) gcws.CWS {
 		filePath = path.Join(os.Getenv("GOPATH"),
 			"src/github.com/huichen/sego/data/dictionary.txt")
 	}
-	segmenter := new(Segmenter)
+	segmenter := &Segmenter{
+		Config: gcws.DefaultConfig,
+	}
 	segmenter.LoadDictionary(filePath)
 	return segmenter
 }
 
-// SetMode set cws mode type.
-func (s *Segmenter) SetMode(typ gcws.ModeType) {
-	s.Mode = typ
+// SetConfig set cws configuration.
+func (s *Segmenter) SetConfig(conf gcws.Config) {
+	s.Config = conf
 }
 
 // Tokenize returns the string array of split.
 func (s Segmenter) Tokenize(str string) []string {
-	return s.ModeTokenize(s.Mode, str)
+	return s.ConfigTokenize(s.Config, str)
 }
 
-// ModeTokenize returns the string array of split with cws mode type.
-func (s Segmenter) ModeTokenize(typ gcws.ModeType, str string) []string {
-	if typ == gcws.ModeDefault {
-		return sego.SegmentsToSlice(s.Segment([]byte(str)), false)
+// ConfigTokenize returns the string array of split with cws configuration.
+func (s Segmenter) ConfigTokenize(conf gcws.Config, str string) (ret []string) {
+	if conf.Mode == gcws.ModeSearch {
+		ret = sego.SegmentsToSlice(s.Segment([]byte(str)), true)
+	} else {
+		ret = sego.SegmentsToSlice(s.Segment([]byte(str)), false)
 	}
-	return sego.SegmentsToSlice(s.Segment([]byte(str)), true)
+	if conf.SkipPunct {
+		ret = gcws.FilterPunct(ret)
+	}
+	return
 }
 
 func init() {

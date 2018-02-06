@@ -48,3 +48,8 @@ func TestCWSharp_Tokenize(t *testing.T) {
 			SkipPunct: true,
 		}, "For man is man and master of his fate."))
 }
+
+func TestNewCWSharp(t *testing.T) {
+	demo, _ = gcws.NewCWS("cwsharp", "")
+	TestCWSharp_Tokenize(t)
+}

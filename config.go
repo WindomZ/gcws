@@ -16,7 +16,9 @@ const (
 
 // Config CWS configuration
 type Config struct {
-	Mode      ModeType
+	// Mode is cws mode type.
+	Mode ModeType
+	// SkipPunct skip the word, if it`s space, punct and symbol.
 	SkipPunct bool
 }
 

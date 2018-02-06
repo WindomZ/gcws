@@ -7,35 +7,39 @@ import (
 
 // Jieba is gojieba.Jieba adapter.
 type Jieba struct {
-	Mode gcws.ModeType
+	Config gcws.Config
 	gojieba.Jieba
 }
 
 // NewJieba create new gojieba.Jieba with paths.
 func NewJieba(paths ...string) gcws.CWS {
-	cws := &Jieba{
-		Mode:  gcws.ModeDefault,
-		Jieba: *gojieba.NewJieba(paths...),
+	return &Jieba{
+		Config: gcws.DefaultConfig,
+		Jieba:  *gojieba.NewJieba(paths...),
 	}
-	return cws
 }
 
-// SetMode set cws mode type.
-func (j *Jieba) SetMode(typ gcws.ModeType) {
-	j.Mode = typ
+// SetConfig set cws configuration.
+func (j *Jieba) SetConfig(conf gcws.Config) {
+	j.Config = conf
 }
 
 // Tokenize returns the string array of split.
 func (j Jieba) Tokenize(str string) []string {
-	return j.ModeTokenize(j.Mode, str)
+	return j.ConfigTokenize(j.Config, str)
 }
 
-// ModeTokenize returns the string array of split with cws mode type.
-func (j Jieba) ModeTokenize(typ gcws.ModeType, str string) []string {
-	if typ == gcws.ModeDefault {
-		return j.Cut(str, true)
+// ConfigTokenize returns the string array of split with cws configuration.
+func (j Jieba) ConfigTokenize(conf gcws.Config, str string) (ret []string) {
+	if conf.Mode == gcws.ModeSearch {
+		ret = j.CutForSearch(str, true)
+	} else {
+		ret = j.Cut(str, true)
 	}
-	return j.CutForSearch(str, true)
+	if conf.SkipPunct {
+		ret = gcws.FilterPunct(ret)
+	}
+	return
 }
 
 func init() {
