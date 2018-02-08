@@ -1,7 +1,6 @@
 package sego
 
 import (
-	"os"
 	"path"
 
 	"github.com/WindomZ/gcws"
@@ -21,7 +20,7 @@ func NewSegmenter(paths ...string) gcws.CWS {
 		filePath = paths[0]
 	}
 	if filePath == "" {
-		filePath = path.Join(os.Getenv("GOPATH"),
+		filePath = path.Join(gcws.GOPATH,
 			"src/github.com/huichen/sego/data/dictionary.txt")
 	}
 	segmenter := &Segmenter{

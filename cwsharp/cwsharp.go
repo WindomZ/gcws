@@ -1,7 +1,6 @@
 package cwsharp
 
 import (
-	"os"
 	"path"
 	"strings"
 
@@ -22,7 +21,7 @@ func NewCWSharp(paths ...string) gcws.CWS {
 		filePath = paths[0]
 	}
 	if filePath == "" {
-		filePath = path.Join(os.Getenv("GOPATH"),
+		filePath = path.Join(gcws.GOPATH,
 			"src/github.com/zhengchun/cwsharp-go/data/cwsharp.dawg")
 	}
 	token, err := cwsharp.New(filePath)
