@@ -18,12 +18,12 @@ const (
 type Config struct {
 	// Mode is cws mode type.
 	Mode ModeType
-	// SkipPunct skip the word, if it`s space, punct and symbol.
-	SkipPunct bool
+	// FilterStopWords skip the word, if it`s space, punct and symbol.
+	FilterStopWords bool
 }
 
 // DefaultConfig is a default CWS configuration
 var DefaultConfig = Config{
-	Mode:      ModeDefault,
-	SkipPunct: false,
+	Mode:            ModeDefault,
+	FilterStopWords: false,
 }

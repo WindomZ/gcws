@@ -46,14 +46,14 @@ func TestCWSharp_Tokenize(t *testing.T) {
 
 	assert.Equal(t, []string{"喜欢", "欢就", "就坚", "坚持", "爱就", "就别", "别放", "放弃"},
 		demo.ConfigTokenize(gcws.Config{
-			Mode:      gcws.ModeFast,
-			SkipPunct: true,
+			Mode:            gcws.ModeFast,
+			FilterStopWords: true,
 		}, "喜欢就坚持，爱就别放弃"))
 
 	assert.Equal(t, []string{"for", "man", "is", "man", "and", "master", "of", "his", "fate"},
 		demo.ConfigTokenize(gcws.Config{
-			Mode:      gcws.ModeEnglish,
-			SkipPunct: true,
+			Mode:            gcws.ModeEnglish,
+			FilterStopWords: true,
 		}, "For man is man and master of his fate."))
 }
 

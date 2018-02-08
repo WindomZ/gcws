@@ -62,7 +62,7 @@ func (c CWSharp) ConfigTokenize(conf gcws.Config, str string) (ret []string) {
 		iter = c.Tokenizer.Tokenize(strings.NewReader(str))
 	}
 
-	if conf.SkipPunct {
+	if conf.FilterStopWords {
 		for tok := iter.Next(); tok != nil; tok = iter.Next() {
 			if tok.Type != cwsharp.PUNCT {
 				ret = append(ret, tok.Text)

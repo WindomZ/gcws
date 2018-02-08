@@ -52,7 +52,7 @@ func (s Segmenter) ConfigTokenize(conf gcws.Config, str string) (ret []string) {
 	} else {
 		ret = sego.SegmentsToSlice(s.Segment([]byte(str)), false)
 	}
-	if conf.SkipPunct {
+	if conf.FilterStopWords {
 		ret = gcws.FilterPunct(ret)
 	}
 	return

@@ -41,7 +41,7 @@ func (j Jieba) ConfigTokenize(conf gcws.Config, str string) (ret []string) {
 	} else {
 		ret = j.Cut(str, true)
 	}
-	if conf.SkipPunct {
+	if conf.FilterStopWords {
 		ret = gcws.FilterPunct(ret)
 	}
 	return
