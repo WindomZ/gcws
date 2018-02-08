@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/WindomZ/gcws)](https://goreportcard.com/report/github.com/WindomZ/gcws)
 [![GoDoc](https://godoc.org/github.com/WindomZ/gcws?status.svg)](https://godoc.org/github.com/WindomZ/gcws)
 
-> gcws是golang版本的CWS(Chinese Word Segmentation) - 一个开源中文分词适配管理器
+> gcws是golang版本的CWS(Chinese Word Segmentation) - 一个开源中文分词集成适配管理器
 
 [English](README_en.md)
 
@@ -15,9 +15,9 @@ go get github.com/WindomZ/gcws/...
 ```
 
 ## 支持
-- [x] [sego](https://github.com/huichen/sego)
-- [x] [jieba](https://github.com/yanyiwu/gojieba)
-- [x] [cwsharp](https://github.com/zhengchun/cwsharp-go)
+- [x] [sego](https://github.com/WindomZ/gcws/tree/master/sego) - Go中文分词，用双数组trie（Double-Array Trie）实现[[GitHub]](https://github.com/huichen/sego)
+- [x] [jieba](https://github.com/WindomZ/gcws/tree/master/jieba) - "结巴"中文分词的Golang版本[[GitHub]](https://github.com/yanyiwu/gojieba)
+- [x] [cwsharp](https://github.com/WindomZ/gcws/tree/master/cwsharp) - golang 版中文分词包, inspired from 盘古分词[[GitHub]](https://github.com/zhengchun/cwsharp-go)
 
 ## 用法
 导入
@@ -40,3 +40,9 @@ cws, err := gcws.NewCWS("jieba")
 ```
 cws.Tokenize("喜欢就坚持，爱就别放弃") // 返回[]string{...}
 ```
+
+## 模式
+- ModeDefault - 默认分词模式
+- ModeSearch - 搜索分词模式，`sego`, `jieba`支持
+- ModeFast - 快速分词模式，`cwsharp`支持
+- ModeEnglish - 英文分词模式，`sego`, `jieba`支持
