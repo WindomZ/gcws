@@ -18,7 +18,10 @@ type CWS interface {
 // Instance is a function create a new CWS Instance
 type Instance func(paths ...string) CWS
 
-var adapters = make(map[string]Instance)
+var (
+	lastName string
+	adapters = make(map[string]Instance)
+)
 
 // Register makes a cws adapter available by the adapter name.
 // If Register is called twice with the same name or if driver is nil, it panics.
@@ -29,12 +32,17 @@ func Register(name string, adapter Instance) {
 	if _, ok := adapters[name]; ok {
 		panic("cws: Register called twice for adapter " + name)
 	}
+	lastName = name
 	adapters[name] = adapter
 }
 
 // NewCWS Create a new cws driver by adapter name and dictionary paths.
+// name is the name of adapter, returns last adapter if empty.
 // paths are file paths of the dictionary.
 func NewCWS(name string, paths ...string) (adapter CWS, err error) {
+	if name == "" {
+		name = lastName
+	}
 	f, ok := adapters[name]
 	if !ok {
 		err = fmt.Errorf("cws: unknown adapter name %q (forgot to import?)", name)
