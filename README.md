@@ -19,6 +19,7 @@ go get github.com/WindomZ/gcws/...
 - [x] [jieba](https://github.com/WindomZ/gcws/tree/master/jieba) - "结巴"中文分词的Golang版本[[GitHub]](https://github.com/yanyiwu/gojieba)
 - [x] [cwsharp](https://github.com/WindomZ/gcws/tree/master/cwsharp) - Golang中文分词库，支持多种分词模式，支持自定义字典和扩展[[GitHub]](https://github.com/zhengchun/cwsharp-go)
 - [x] [segment](https://github.com/WindomZ/gcws/tree/master/segment) - golang 版中文分词包, inspired from 盘古分词[[GitHub]](https://github.com/WindomZ/gosegment)
+- [x] [gse](https://github.com/WindomZ/gcws/tree/master/gse) - Go 语言高效分词, 支持英文、中文、日文等[[GitHub]](https://github.com/go-ego/gse)
 
 ## 用法
 导入
@@ -44,6 +45,6 @@ cws.Tokenize("喜欢就坚持，爱就别放弃") // 返回[]string{...}
 
 ## 模式
 - ModeDefault - 默认分词模式
-- ModeSearch - 搜索分词模式，`sego`, `jieba`, `segment`支持
+- ModeSearch - 搜索分词模式，`sego`, `jieba`, `segment`, `gse`支持
 - ModeFast - 快速分词模式，`cwsharp`支持
 - ModeEnglish - 英文分词模式，`sego`, `jieba`支持

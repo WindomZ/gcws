@@ -21,6 +21,7 @@ go get github.com/WindomZ/gcws/...
 - [x] [jieba](https://github.com/WindomZ/gcws/tree/master/jieba) - "结巴"中文分词的Golang版本[[GitHub]](https://github.com/yanyiwu/gojieba)
 - [x] [cwsharp](https://github.com/WindomZ/gcws/tree/master/cwsharp) - Golang中文分词库，支持多种分词模式，支持自定义字典和扩展[[GitHub]](https://github.com/zhengchun/cwsharp-go)
 - [x] [segment](https://github.com/WindomZ/gcws/tree/master/segment) - golang 版中文分词包, inspired from 盘古分词[[GitHub]](https://github.com/WindomZ/gosegment)
+- [x] [gse](https://github.com/WindomZ/gcws/tree/master/gse) - Go efficient text segmentation; support english, chinese, japanese and other.[[GitHub]](https://github.com/go-ego/gse)
 
 ## Usage
 Import it
@@ -46,6 +47,6 @@ cws.Tokenize("For man is man and master of his fate.") // return []string{...}
 
 ## Mode
 - ModeDefault - default mode
-- ModeSearch - search optimization, support `sego`, `jieba`, `segment`
+- ModeSearch - search optimization, support `sego`, `jieba`, `segment`, `gse`
 - ModeFast - run fast, support `cwsharp`
 - ModeEnglish - optimization for English, support`sego`, `jieba`

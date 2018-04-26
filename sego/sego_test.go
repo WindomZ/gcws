@@ -34,6 +34,7 @@ func TestSegmenter_SetConfig(t *testing.T) {
 	})
 	demo.SetConfig(gcws.DefaultConfig)
 }
+
 func TestSegmenter_Tokenize(t *testing.T) {
 	assert.Equal(t, []string{"喜欢", "就", "坚持", "，", "爱", "就", "别", "放弃"},
 		demo.Tokenize("喜欢就坚持，爱就别放弃"))
